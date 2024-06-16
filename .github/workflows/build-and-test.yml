@@ -98,5 +98,5 @@ jobs:
       - name: Test no errors reported during server run
         if: ${{ !inputs.client-only }}
         run: |
-          chmod +x .fpgradle-workflows/scripts/test_no_error_reports
-          .fpgradle-workflows/scripts/test_no_error_reports
+          chmod +x .fpgradle-workflows/.github/scripts/test_no_error_reports
+          .fpgradle-workflows/.github/scripts/test_no_error_reports
