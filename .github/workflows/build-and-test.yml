@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: FalsePattern/fpgradle-workflows
-          path: .fpgradle-workflows
+          path: build/.fpgradle-workflows
           fetch-depth: 0
 
       - name: Set up JDK versions
@@ -48,7 +48,6 @@ jobs:
             17
             21
           distribution: 'adopt'
-          cache: gradle
 
       - name: Validate gradle wrapper checksum
         uses: gradle/actions/wrapper-validation@v3
@@ -98,5 +97,5 @@ jobs:
       - name: Test no errors reported during server run
         if: ${{ !inputs.client-only }}
         run: |
-          chmod +x .fpgradle-workflows/.github/scripts/test_no_error_reports
-          .fpgradle-workflows/.github/scripts/test_no_error_reports
+          chmod +x build/.fpgradle-workflows/.github/scripts/test_no_error_reports
+          build/.fpgradle-workflows/.github/scripts/test_no_error_reports

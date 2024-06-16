@@ -37,7 +37,6 @@ jobs:
             17
             21
           distribution: 'adopt'
-          cache: gradle
 
       - name: Validate gradle wrapper checksum
         uses: gradle/actions/wrapper-validation@v3
