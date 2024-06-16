@@ -32,8 +32,7 @@ jobs:
           sudo apt-get install -y mesa-utils xvfb x11-xserver-utils
       - name: Checkout mod repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+
       - name: Checkout workflows repo
         uses: actions/checkout@v4
         with:
