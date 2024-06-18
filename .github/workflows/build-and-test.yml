@@ -62,11 +62,13 @@ jobs:
             build/lombok/effective-config/lombok-patchedMc.config
             build/resources/patchedMc
             build/rfg
+            build/tmp/.cache/expanded
             build/tmp/compileMcLauncherJava
             build/tmp/compilePatchedMcJava
+            build/tmp/deobfuscateMergedJarToSrg
             build/tmp/packageMcLauncher
             build/tmp/packagePatchedMc
-          key: ${{ runner.os }}-rfg
+          key: rfg-cache
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
