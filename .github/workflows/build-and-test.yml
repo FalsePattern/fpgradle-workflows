@@ -26,10 +26,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Ubuntu dependencies
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y mesa-utils xvfb x11-xserver-utils
       - name: Checkout mod repo
         uses: actions/checkout@v4
 
@@ -90,7 +86,7 @@ jobs:
 
       - name: Run post-build checks
         id: build_mod
-        run: xvfb-run --server-args="-screen 0 1366x768x24" ./gradlew --build-cache build
+        run: ./gradlew --build-cache build
 
       - name: Attach gradle reports
         if: failure() && steps.build_mod.conclusion == 'failure'
