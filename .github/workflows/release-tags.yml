@@ -96,7 +96,7 @@ jobs:
         if: ${{ env.MAVEN_DEPLOY_USER != '' }}
 
       - name: Publish to Modrinth and CurseForge
-        run: ./gradlew --build-cache assemble publish -x test
+        run: ./gradlew --build-cache assemble curseforge modrinth -x test
         continue-on-error: true
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
