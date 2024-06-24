@@ -4,9 +4,9 @@ name: Release tagged build
 on:
   workflow_call:
     secrets:
-      MAVEN_USER:
+      MAVEN_DEPLOY_USER:
         required: false
-      MAVEN_PASSWORD:
+      MAVEN_DEPLOY_PASSWORD:
         required: false
       CURSEFORGE_TOKEN:
         required: false
