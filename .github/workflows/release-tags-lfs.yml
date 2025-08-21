@@ -91,7 +91,7 @@ jobs:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
       - name: Publish to Modrinth
-        run: ./gradlew --build-cache assemble modrinth -x test
+        run: ./gradlew --no-configuration-cache --build-cache assemble modrinth -x test
         continue-on-error: true
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
