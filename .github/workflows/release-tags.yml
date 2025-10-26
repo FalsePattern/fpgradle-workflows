@@ -18,6 +18,11 @@ on:
         required: false
         default: "setupCIWorkspace"
         type: string
+      zig-version:
+        description: 'The zig version to use (if using GradleZigBuild)'
+        required: false
+        default: "__NONE__"
+        type: string
 
 jobs:
   build:
@@ -36,7 +41,14 @@ jobs:
             8
             17
             21
+            25
           distribution: 'adopt'
+
+      - name: Set up Zig
+        uses: mlugg/setup-zig@v2
+        if: ${{ inputs.zig-version != '__NONE__' }}
+        with:
+          version: ${{ inputs.zig-version }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
