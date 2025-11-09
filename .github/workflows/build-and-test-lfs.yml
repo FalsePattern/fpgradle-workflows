@@ -75,10 +75,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup the workspace
-        run: ./gradlew --build-cache ${{ inputs.workspace }}
+        run: ./gradlew --stacktrace --build-cache ${{ inputs.workspace }}
 
       - name: Compile the mod
-        run: ./gradlew --build-cache assemble
+        run: ./gradlew --stacktrace --build-cache assemble
 
       - name: Attach compilation artifacts
         uses: actions/upload-artifact@v4
@@ -89,7 +89,7 @@ jobs:
 
       - name: Run post-build checks
         id: build_mod
-        run: ./gradlew --build-cache build
+        run: ./gradlew --stacktrace --build-cache build
 
       - name: Attach gradle reports
         if: failure() && steps.build_mod.conclusion == 'failure'
@@ -108,7 +108,7 @@ jobs:
           # Set a constant seed with a village at spawn
           echo "level-seed=-6202107849386030209\nonline-mode=true\n" > run/server.properties
           echo "stop" > run/stop.txt
-          timeout ${{ inputs.timeout }} ./gradlew --build-cache runServer 2>&1 < run/stop.txt | tee -a server.log || true
+          timeout ${{ inputs.timeout }} ./gradlew --stacktrace --build-cache runServer 2>&1 < run/stop.txt | tee -a server.log || true
 
       - name: Test no errors reported during server run
         if: ${{ !inputs.client-only }}

@@ -59,10 +59,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup the workspace
-        run: ./gradlew --build-cache ${{ inputs.workspace }}
+        run: ./gradlew --stacktrace --build-cache ${{ inputs.workspace }}
 
       - name: Build the mod
-        run: ./gradlew --build-cache assemble
+        run: ./gradlew --stacktrace --build-cache assemble
 
       # Continue on error in the following steps to make sure releases still get made even if one of the methods fails
 
@@ -80,7 +80,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to Maven
-        run: ./gradlew --build-cache assemble publish -x test
+        run: ./gradlew --stacktrace --build-cache assemble publish -x test
         continue-on-error: true
         env:
           MAVEN_DEPLOY_USER: ${{ secrets.MAVEN_DEPLOY_USER }}
@@ -88,13 +88,13 @@ jobs:
         if: ${{ env.MAVEN_DEPLOY_USER != '' }}
 
       - name: Publish to CurseForge
-        run: ./gradlew --build-cache assemble curseforge -x test
+        run: ./gradlew --stacktrace --build-cache assemble curseforge -x test
         continue-on-error: true
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
       - name: Publish to Modrinth
-        run: ./gradlew --no-configuration-cache --build-cache assemble modrinth -x test
+        run: ./gradlew --stacktrace --no-configuration-cache --build-cache assemble modrinth -x test
         continue-on-error: true
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
