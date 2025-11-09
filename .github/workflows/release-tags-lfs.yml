@@ -49,8 +49,8 @@ jobs:
           java-version: |
             8
             17
-            21
             25
+            21
           distribution: 'adopt'
 
       - name: Set up Zig
